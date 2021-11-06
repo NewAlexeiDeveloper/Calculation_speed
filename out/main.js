@@ -1,6 +1,6 @@
 import { get_random, operator_for_user, calculate_two_number } from './supplement.js';
 // global variables
-const calculation = document.getElementById('calculation'), animation = document.querySelector('.animation'), start = document.getElementById('start'), operation = document.getElementById('operation'), number_digits = document.getElementById('number_digits'), result = document.getElementById('result'), place_for_time = document.getElementById('place_for_time'), time_for_move = document.getElementById('time_for_move'), game_over = document.querySelector('.game_over');
+const calculation = document.getElementById('calculation'), animation = document.querySelector('.animation'), start = document.getElementById('start'), operation = document.getElementById('operation'), number_digits = document.getElementById('number_digits'), result = document.getElementById('result'), place_for_time = document.getElementById('place_for_time'), time_for_move = document.getElementById('time_for_move'), game_over = document.querySelector('.game_over'), color_digits = document.getElementById('color_digits');
 let id_counter = 0, iteration_number, calculation_result, time_for_moveValue, game_played_not_first_time = false, the_game_is_played = false;
 // fill the calculation area with squares. Will create as a function, so that if the screen is resized then squares are as well
 function createSquares() {
@@ -77,6 +77,7 @@ start.addEventListener('click', () => {
     time_for_move.disabled = true;
     number_digits.disabled = true;
     start.disabled = true;
+    color_digits.disabled = true;
     // add values to the calculation area
     function addValues() {
         const operationValue = operation.value;
@@ -94,8 +95,11 @@ start.addEventListener('click', () => {
             }
             // write the values in the calculation area
             document.getElementById(id_counter.toString()).textContent = random_one.toString();
+            document.getElementById(id_counter.toString()).style.color = color_digits.value;
             document.getElementById((id_counter + 1).toString()).textContent = operation;
+            document.getElementById((id_counter + 1).toString()).style.color = color_digits.value;
             document.getElementById((id_counter + 2).toString()).textContent = random_two.toString();
+            document.getElementById((id_counter + 2).toString()).style.color = color_digits.value;
             // calculate the result
             calculation_result = calculate_two_number(random_one, random_two, operation);
             id_counter = 3;
@@ -111,7 +115,9 @@ start.addEventListener('click', () => {
                 }
                 // write the values in the calculation area
                 document.getElementById(id_counter.toString()).textContent = operation;
+                document.getElementById(id_counter.toString()).style.color = color_digits.value;
                 document.getElementById((id_counter + 1).toString()).textContent = random_one.toString();
+                document.getElementById((id_counter + 1).toString()).style.color = color_digits.value;
                 calculation_result = calculate_two_number(calculation_result, random_one, operation);
                 id_counter += 2;
             }
@@ -140,6 +146,7 @@ start.addEventListener('click', () => {
         time_for_move.disabled = false;
         number_digits.disabled = false;
         start.disabled = false;
+        color_digits.disabled = false;
         // disable input 
         result.disabled = true;
         // show game over and add animation (depends on the result)

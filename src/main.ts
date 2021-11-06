@@ -9,7 +9,8 @@ const calculation = document.getElementById('calculation') as HTMLElement,
       result = document.getElementById('result') as HTMLInputElement,
       place_for_time = document.getElementById('place_for_time') as HTMLElement,
       time_for_move = document.getElementById('time_for_move') as HTMLSelectElement,
-      game_over = document.querySelector('.game_over') as HTMLElement
+      game_over = document.querySelector('.game_over') as HTMLElement,
+      color_digits = document.getElementById('color_digits') as HTMLInputElement
       
       let id_counter: number = 0,
       iteration_number: number,
@@ -92,6 +93,7 @@ start.addEventListener('click', () => {
     time_for_move.disabled = true
     number_digits.disabled = true
     start.disabled = true
+    color_digits.disabled = true
 
     // add values to the calculation area
     function addValues(): void {
@@ -110,8 +112,11 @@ start.addEventListener('click', () => {
             }
             // write the values in the calculation area
             document.getElementById(id_counter.toString())!.textContent = random_one.toString()
+            document.getElementById(id_counter.toString())!.style.color = color_digits.value 
             document.getElementById((id_counter + 1).toString())!.textContent = operation
+            document.getElementById((id_counter + 1).toString())!.style.color = color_digits.value 
             document.getElementById((id_counter + 2).toString())!.textContent = random_two.toString()
+            document.getElementById((id_counter + 2).toString())!.style.color = color_digits.value 
             // calculate the result
             calculation_result = calculate_two_number(random_one, random_two, operation)
             id_counter = 3
@@ -126,9 +131,11 @@ start.addEventListener('click', () => {
                 }
                 // write the values in the calculation area
                 document.getElementById(id_counter.toString())!.textContent = operation
+                document.getElementById(id_counter.toString())!.style.color = color_digits.value 
                 document.getElementById((id_counter + 1).toString())!.textContent = random_one.toString()
+                document.getElementById((id_counter + 1).toString())!.style.color = color_digits.value 
                 calculation_result = calculate_two_number(calculation_result, random_one, operation)
-                id_counter += 2
+                id_counter += 2 
             }else{
                 gameOver('win')
             }
@@ -155,6 +162,7 @@ start.addEventListener('click', () => {
         time_for_move.disabled = false
         number_digits.disabled = false
         start.disabled = false
+        color_digits.disabled = false
         // disable input 
         result.disabled = true
         // show game over and add animation (depends on the result)
