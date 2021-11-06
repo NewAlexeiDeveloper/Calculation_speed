@@ -1,0 +1,16 @@
+{
+  "name": "Add_Minus_Multiply",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "tsc-watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tsc": "^2.0.3",
+    "tsc-watch": "^4.5.0"
+  }
+}

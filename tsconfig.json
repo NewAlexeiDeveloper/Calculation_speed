@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "outDir": "./out",
+        "rootDir": "./src",
+        "declaration": true,
+        "module": "ESNext",
+        "noUnusedParameters": true,
+        "noEmitOnError": true,
+        "strictNullChecks": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "strict": true
+    }
+}
