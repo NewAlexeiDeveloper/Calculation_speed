@@ -63,6 +63,8 @@ window.addEventListener('resize', () => {
 
 // Add event listener to the start button
 start.addEventListener('click', () => {
+    // focus the input
+    result.focus()
     // delete previous data
     if(game_played_not_first_time) {startGame()}
     // animation
@@ -150,6 +152,13 @@ start.addEventListener('click', () => {
             time_for_moveValue = Number(time_for_move.value)
             place_for_time.textContent = time_for_moveValue.toString()
             result.value = ''
+            // change input border to signalize success
+            result.style.border = '2px solid green'
+            setTimeout(() => result.style.border = '', 400)
+        }else{
+            // change input border to signalize an error
+            result.style.border = '2px solid red'
+            setTimeout(() => result.style.border = '', 400)
         }
     }
 
@@ -214,5 +223,7 @@ start.addEventListener('click', () => {
         id_counter = 0
         the_game_is_played = false
         result.value = ''
+        // focus the input
+        result.focus()
     }
 })

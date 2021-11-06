@@ -67,6 +67,10 @@ main article {
 #color_digits{
     margin: auto 0;
 }
+#result{
+    outline: none;
+    width: 100%;
+}
 
 
 
