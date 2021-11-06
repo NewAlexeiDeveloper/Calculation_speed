@@ -83,9 +83,7 @@ start.addEventListener('click', () => {
         animation.style.animation = ''
         animation.textContent = ''
         addValues()
-        result.addEventListener('keypress', e => {
-            e.key == 'Enter' ? check_result_of_user() : ''
-        })
+        result.addEventListener('keydown', checkResult)
         // add timer
         timer()
     }, 3000) 
@@ -140,6 +138,7 @@ start.addEventListener('click', () => {
                 id_counter += 2 
             }else{
                 gameOver('win')
+                result.removeEventListener('keydown', checkResult)
             }
         }
     }
@@ -174,6 +173,8 @@ start.addEventListener('click', () => {
         color_digits.disabled = false
         // disable input 
         result.disabled = true
+        // remove listener from enter input
+        result.removeEventListener('keydown', checkResult)
         // show game over and add animation (depends on the result)
         if(status == 'loose'){
             game_over.style.display = 'block'
@@ -189,7 +190,7 @@ start.addEventListener('click', () => {
             game_over.style.animation = 'game_over 2s linear 1'
             game_played_not_first_time = true
             result.value = ''
-        }
+        } 
     }
 
     // timer
@@ -225,5 +226,10 @@ start.addEventListener('click', () => {
         result.value = ''
         // focus the input
         result.focus()
+    }
+
+    // prevent adding event listener two times
+    function checkResult(e: any): void {
+        e.key == 'Enter' ? check_result_of_user() : ''
     }
 })
